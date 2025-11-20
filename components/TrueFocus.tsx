@@ -167,20 +167,34 @@ export default function TrueFocus({
     >
       {words.map((word, index) => {
         const isActive = index === currentIndex;
-        // Vis tekst uten blur (skarp) når den er aktiv eller når animasjonen er ferdig
-        // Teksten forblir alltid synlig og skarp, kun fokus-effekten fader ut
-        const shouldBeSharp = phase === "done" || isActive;
+        // Når TrueFocus animasjonen er ferdig, render alle bokstaver skarpe (ingen blur)
+        const isDone = phase === "done" || !showEffect;
+        
+        // Style-logikk: når animasjonen er ferdig, all tekst er skarp, ellers bruk aktiv/blur-logikk
+        const style = isDone
+          ? {
+              // Når animasjonen er ferdig, all tekst er 100% skarp (ingen blur, full opacity)
+              filter: "blur(0px)",
+              opacity: 1,
+              ["--border-color" as any]: borderColor,
+              ["--glow-color" as any]: glowColor,
+              transition: `filter ${animationDuration}s ease`,
+            }
+          : {
+              // Under animasjonen: aktiv ord er skarp, andre er blurred
+              filter: isActive ? "blur(0px)" : `blur(${blurAmount}px)`,
+              opacity: 1,
+              ["--border-color" as any]: borderColor,
+              ["--glow-color" as any]: glowColor,
+              transition: `filter ${animationDuration}s ease`,
+            };
+        
         return (
           <span
             key={index}
             ref={el => (wordRefs.current[index] = el)}
             className={`focus-word ${manualMode ? "manual" : ""} ${isActive && !manualMode ? "active" : ""}`}
-            style={{
-              filter: shouldBeSharp ? "blur(0px)" : `blur(${blurAmount}px)`,
-              ["--border-color" as any]: borderColor,
-              ["--glow-color" as any]: glowColor,
-              transition: `filter ${animationDuration}s ease`,
-            }}
+            style={style}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
           >
