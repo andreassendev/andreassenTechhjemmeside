@@ -20,9 +20,9 @@ export default function Home() {
 
           {/* Innhold */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center container-p">
-            <TrueFocus sentence="Beware of our software." className="mb-6" />
+            <TrueFocus sentence="Andreassen Technology" className="mb-6" />
             <DecryptedText
-              text="Modern web, apps & AI."
+              text="Beware of our software. Modern web, apps & AI."
               animateOn="view"
               className="font-medium"
               parentClassName="text-lg md:text-xl text-white/80"
