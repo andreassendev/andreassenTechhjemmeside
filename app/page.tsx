@@ -20,9 +20,9 @@ export default function Home() {
 
           {/* Innhold */}
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center container-p">
-            <TrueFocus sentence="Andreassen Technology" className="mb-6" />
+            <TrueFocus sentence="Beware of our software." className="mb-6" />
             <DecryptedText
-              text="Modern software & AI for ambitious teams"
+              text="Modern web, apps & AI."
               animateOn="view"
               className="font-medium"
               parentClassName="text-lg md:text-xl text-white/80"
@@ -34,18 +34,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container-p mt-20 grid gap-6 md:grid-cols-3">
+        <section className="container-p mt-20 grid gap-6 md:grid-cols-2">
           <div className="glass rounded-2xl p-6">
             <h3 className="text-xl font-semibold mb-2">What we do</h3>
-            <p className="text-white/70">Design and build web apps, APIs and AI-driven tools with a focus on performance and DX.</p>
+            <p className="text-white/70">We build modern websites, web apps and small AI tools.</p>
           </div>
           <div className="glass rounded-2xl p-6">
-            <h3 className="text-xl font-semibold mb-2">How we work</h3>
-            <p className="text-white/70">Small, senior team. Rapid iterations. Clean code, clean UI.</p>
-          </div>
-          <div className="glass rounded-2xl p-6">
-            <h3 className="text-xl font-semibold mb-2">Tech</h3>
-            <p className="text-white/70">Next.js, TypeScript, Postgres, edge functions, and modern motion graphics.</p>
+            <h3 className="text-xl font-semibold mb-2">Tech stack</h3>
+            <p className="text-white/70">React, Next.js, TypeScript, Node.js, Postgres/Supabase, Tailwind CSS, Vercel.</p>
           </div>
         </section>
       </main>
