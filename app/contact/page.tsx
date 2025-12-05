@@ -5,13 +5,48 @@ import SimpleProfileCard from "@/components/SimpleProfileCard";
 import { useState } from "react";
 
 export default function Contact() {
-  const [status, setStatus] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const res = await fetch("/api/contact", { method: "POST", body: form });
-    setStatus(res.ok ? "Message sent ✓" : "Something went wrong");
-    (e.target as HTMLFormElement).reset();
+    
+    // Reset status
+    setSuccess(false);
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (res.ok) {
+        // Success: clear fields and show success message
+        setName("");
+        setEmail("");
+        setMessage("");
+        setSuccess(true);
+        setError(null);
+      } else {
+        // Error response
+        const data = await res.json();
+        setError(data.error || "Something went wrong. Please try again.");
+        setSuccess(false);
+      }
+    } catch (err) {
+      // Network or other error
+      setError("Something went wrong. Please try again.");
+      setSuccess(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -33,33 +68,54 @@ export default function Contact() {
             <form onSubmit={onSubmit} className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 ring-1 ring-white/10 shadow-[0_0_20px_rgba(56,189,248,0.15)] flex flex-col justify-between h-full">
               <div className="space-y-4">
                 <input 
+                  type="text"
                   name="name" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Name" 
                   required 
-                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition"
+                  disabled={isLoading}
+                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition disabled:opacity-50 disabled:cursor-not-allowed"
                 />
                 <input 
                   type="email" 
                   name="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email" 
                   required 
-                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition"
+                  disabled={isLoading}
+                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition disabled:opacity-50 disabled:cursor-not-allowed"
                 />
                 <textarea 
                   name="message" 
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   placeholder="Message" 
                   rows={6} 
                   required 
-                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition resize-none"
+                  disabled={isLoading}
+                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
               <div>
                 <button 
-                  className="w-full mt-6 rounded-xl bg-cyan-500/10 ring-1 ring-cyan-400/30 hover:bg-cyan-500/20 transition-all py-3 font-semibold"
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full mt-6 rounded-xl bg-cyan-500/10 ring-1 ring-cyan-400/30 hover:bg-cyan-500/20 transition-all py-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isLoading ? "Sending..." : "Send Message"}
                 </button>
-                {status && <p className="text-sm text-center text-cyan-400 mt-2">{status}</p>}
+                {success && (
+                  <p className="text-sm text-center text-cyan-400 mt-2">
+                    Message sent ✓
+                  </p>
+                )}
+                {error && (
+                  <p className="text-sm text-center text-red-400 mt-2">
+                    {error}
+                  </p>
+                )}
               </div>
             </form>
 
