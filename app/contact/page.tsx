@@ -44,7 +44,7 @@ export default function Contact() {
                   </svg>
                 </a>
                 <a 
-                  href="mailto:hello@andreassentechnology.no"
+                  href="mailto:post@andreassentechnology.no"
                   className="rounded-full bg-white/10 hover:bg-white/20 p-3 ring-1 ring-white/10 transition"
                   aria-label="Send Email"
                 >
