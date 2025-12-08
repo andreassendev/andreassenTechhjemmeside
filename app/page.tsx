@@ -22,7 +22,7 @@ export default function Home() {
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center container-p">
             <TrueFocus sentence="Andreassen Technology" className="mb-6" />
             <DecryptedText
-              text="Modern software & AI for ambitious teams"
+              text="Beware of our software."
               animateOn="view"
               className="font-medium"
               parentClassName="text-lg md:text-xl text-white/80"
@@ -37,15 +37,15 @@ export default function Home() {
         <section className="container-p mt-20 grid gap-6 md:grid-cols-3">
           <div className="glass rounded-2xl p-6">
             <h3 className="text-xl font-semibold mb-2">What we do</h3>
-            <p className="text-white/70">Design and build web apps, APIs and AI-driven tools with a focus on performance and DX.</p>
+            <p className="text-white/70">We build modern websites, landing pages and web apps, with a focus on web design and app development.</p>
           </div>
           <div className="glass rounded-2xl p-6">
             <h3 className="text-xl font-semibold mb-2">How we work</h3>
-            <p className="text-white/70">Small, senior team. Rapid iterations. Clean code, clean UI.</p>
+            <p className="text-white/70">Clean, scalable and efficient code.</p>
           </div>
           <div className="glass rounded-2xl p-6">
             <h3 className="text-xl font-semibold mb-2">Tech</h3>
-            <p className="text-white/70">Next.js, TypeScript, Postgres, edge functions, and modern motion graphics.</p>
+            <p className="text-white/70">React, Next.js, TypeScript, Node.js, Postgres/Supabase, Tailwind CSS, and modern app tooling.</p>
           </div>
         </section>
       </main>

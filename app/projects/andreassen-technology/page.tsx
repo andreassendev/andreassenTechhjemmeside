@@ -17,7 +17,7 @@ export default function AndreassenTechnology() {
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 ring-1 ring-white/10 shadow-[0_0_20px_rgba(56,189,248,0.15)]">
             <h1 className="text-4xl font-bold mb-6">Private Consulting</h1>
             <p className="text-lg text-white/80 mb-6">
-              Tailored tech solutions and advisory services for businesses seeking expert guidance.
+              Independent consulting and technical advisory (selected work)
             </p>
             
             <div className="space-y-4 text-white/70">
