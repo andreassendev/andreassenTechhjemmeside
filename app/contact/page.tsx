@@ -1,19 +1,8 @@
-"use client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SimpleProfileCard from "@/components/SimpleProfileCard";
-import { useState } from "react";
 
 export default function Contact() {
-  const [status, setStatus] = useState<string | null>(null);
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const res = await fetch("/api/contact", { method: "POST", body: form });
-    setStatus(res.ok ? "Message sent ✓" : "Something went wrong");
-    (e.target as HTMLFormElement).reset();
-  };
-
   return (
     <>
       <Navbar />
@@ -23,48 +12,13 @@ export default function Contact() {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-3">Contact</h1>
             <p className="text-lg opacity-80">
-              We&apos;d love to hear about your project. Whether you&apos;re looking for collaboration, consulting, or full-stack development, reach out below.
+              Reach out directly via email or LinkedIn for collaboration, consulting or full-stack development.
             </p>
           </div>
 
-          {/* Main Content Grid */}
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch mb-16">
-            {/* Contact Form */}
-            <form onSubmit={onSubmit} className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 ring-1 ring-white/10 shadow-[0_0_20px_rgba(56,189,248,0.15)] flex flex-col justify-between h-full">
-              <div className="space-y-4">
-                <input 
-                  name="name" 
-                  placeholder="Name" 
-                  required 
-                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition"
-                />
-                <input 
-                  type="email" 
-                  name="email" 
-                  placeholder="Email" 
-                  required 
-                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition"
-                />
-                <textarea 
-                  name="message" 
-                  placeholder="Message" 
-                  rows={6} 
-                  required 
-                  className="w-full rounded-lg bg-neutral-900/80 px-4 py-3 border border-white/10 focus:ring-2 focus:ring-cyan-400/50 outline-none transition resize-none"
-                />
-              </div>
-              <div>
-                <button 
-                  className="w-full mt-6 rounded-xl bg-cyan-500/10 ring-1 ring-cyan-400/30 hover:bg-cyan-500/20 transition-all py-3 font-semibold"
-                >
-                  Send Message
-                </button>
-                {status && <p className="text-sm text-center text-cyan-400 mt-2">{status}</p>}
-              </div>
-            </form>
-
-            {/* Contact the Founder */}
-            <div className="flex flex-col justify-between items-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 ring-1 ring-white/10 shadow-[0_0_20px_rgba(56,189,248,0.15)] h-full">
+          {/* Contact the Founder */}
+          <div className="max-w-lg mx-auto mb-16">
+            <div className="flex flex-col justify-between items-center bg-white/5 backdrop-blur-sm rounded-2xl p-8 ring-1 ring-white/10 shadow-[0_0_20px_rgba(56,189,248,0.15)]">
               <div className="w-full">
                 <h2 className="text-2xl font-semibold mb-6 text-center">Contact the Founder</h2>
                 <div className="w-full max-w-sm mx-auto">
@@ -117,4 +71,3 @@ export default function Contact() {
     </>
   );
 }
-
