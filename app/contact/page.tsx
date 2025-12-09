@@ -44,7 +44,7 @@ export default function Contact() {
                   </svg>
                 </a>
                 <a 
-                  href="mailto:post@andreassentechnology.no"
+                  href="mailto:post@andreassentech.no"
                   className="rounded-full bg-white/10 hover:bg-white/20 p-3 ring-1 ring-white/10 transition"
                   aria-label="Send Email"
                 >
@@ -60,7 +60,7 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="text-center text-sm opacity-70 space-y-2">
             <p>
-              Email: <a href="mailto:hello@andreassentechnology.no" className="hover:underline text-cyan-400/80">hello@andreassentechnology.no</a>
+              Email: <a href="mailto:post@andreassentech.no" className="hover:underline text-cyan-400/80">post@andreassentech.no</a>
             </p>
             <p>Bergen, Norway</p>
             <p>Mon–Fri, 09:00–17:00</p>
